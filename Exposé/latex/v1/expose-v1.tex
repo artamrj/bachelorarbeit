@@ -1,0 +1,203 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\setlength{\parskip}{0.8em}
+\setlength{\parindent}{0pt}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\large\textsc{Exposé für Bachelorarbeit}}\\[3cm]
+    {\LARGE\textbf{Deployment-Strategien für Cloud-native Industry~4.0 Anwendungen}}\\[1cm]
+    {\textbf{Eine Evaluierung basierend auf PURIS?? oder UMBRELLA?? (Tractus-X)}}\\[3cm]
+    {\large Student: \textit{Mohahammadreza Javadikouchaksaraei}\\
+    Betreuer: \textit{Haydar Qarawlus}\\
+    Studiengang: \textit{Bachelor Informatik}\\[1cm]
+    \vfill
+    \today}\\[2cm]
+    {\small Exposé für die Bachelorarbeit an der TU Dortmund in Kooperation mit dem Fraunhofer-Institut.}
+    \thispagestyle{empty}
+\end{titlepage}
+
+\clearpage
+\setcounter{page}{1}
+\onehalfspacing
+
+\section{Hintergrund und Motivation}
+Der technologische Fortschritt im Cloud-Bereich hat in den letzten Jahren zu einer zunehmenden Komplexität moderner Anwendungen geführt, die heute als Teil von Industry~4.0 betrachtet werden. Dies bedeutet, dass diese Systeme in wachsendem Maße auf vernetzte Softwarekomponenten sowie cloudbasierte Infrastrukturen aufbauen.
+
+Die Deployment solcher Systeme ist aufgrund ihres verteilten, containerisierten und stark abhängigen Charakters mit praktischen Herausforderungen verbunden. Dies wirft zahlreiche Fragen hinsichtlich der Einführung und Umsetzung in Organisationen mit unterschiedlichen Rahmenbedingungen auf. Abhängig vom jeweiligen Kontext reicht das Spektrum möglicher Deployment-Strategien von manuellen Verfahren bis hin zu vollständig automatisierten Ansätzen. Derzeit existiert jedoch nur begrenzte wissenschaftliche Orientierung dazu, wie geeignete Strategien für verschiedene Szenarien ausgewählt und hinsichtlich Komplexität, Wartbarkeit und Zuverlässigkeit bewertet werden können.
+
+Zur Analyse und zum Vergleich solcher Prozesse und Strategien bieten sich Projekte wie Catena-X an, insbesondere Tractus-X sowie die darin enthaltene PURIS-Komponente. Diese fortgeschrittene Anwendung ermöglicht eine Betrachtung aus akademischer und operativer Perspektive.
+
+\section{Problemstellung}
+Das Problem besteht nicht im Fehlen von Werkzeugen, sondern in der Frage, welches Werkzeug in welcher Situation angemessen eingesetzt werden sollte. Es mangelt an einer systematischen Analyse und Bewertung von Deployment-Strategien für komplexe Cloud-native Anwendungen und verteilte Mikrosysteme. Vorhandene Dokumentationen konzentrieren sich überwiegend auf technische Umsetzungsschritte und bieten keinen strukturierten Ansatz zur Auswahl zwischen manuellen, teilautomatisierten oder vollautomatischen Deployments. Darüber hinaus existiert kein kennzahlenbasiertes Rahmenwerk zur Bewertung dieser Strategien hinsichtlich Komplexität, Aufwand, Zuverlässigkeit, Reproduzierbarkeit und operativer Eigenschaften.
+
+Folglich sehen sich Organisationen und Teams mit hochentwickelten Anwendungen und komplexen Systemarchitekturen mit Unsicherheiten hinsichtlich benötigter Kompetenzprofile, operativer Risiken und der langfristigen Wartbarkeit konfrontiert. Die zentrale Fragestellung liegt darin, wie ein geeigneter Weg gewählt werden kann, was wiederum Raum für vertiefte Forschung und Analyse eröffnet.
+
+\section{Forschungsfragen}
+Die Arbeit untersucht die folgenden Forschungsfragen:
+
+\begin{enumerate}[label=\textbf{RQ\arabic*:}]
+    \item Welche Metriken lassen sich zur Evaluation und zum Vergleich dieser Deployment-Strategien heranziehen?
+    \item Worin unterscheiden sich manuelle, semi-automatisierte und automatisierte Deployments hinsichtlich Komplexität, Aufwand, Zuverlässigkeit, Reproduzierbarkeit und Betriebseigenschaften?
+    \item Welche Deployment-Strategie eignet sich für welches Anwendungsszenario und warum?
+    \item Welche Deployment-Strategien sind für cloud-native Industry~4.0-Anwendungen im Kontext von Tractus-X (am Beispiel von PURIS) relevant?
+\end{enumerate}
+
+\section{Ziele}
+Ziel dieser Arbeit ist es:
+\begin{itemize}
+    \item einen Satz von Evaluationsmetriken für Deployment-Strategien zu definieren,
+    \item drei Deployment-Strategien für PURIS umzusetzen (manuell, semi-automatisiert, automatisiert),
+    \item Evaluation-Szenarien zu entwerfen und Daten zu erheben,
+    \item Deployment-Strategien quantitativ und qualitativ zu vergleichen,
+    \item Handlungsempfehlungen für industrielle Anwender abzuleiten.
+\end{itemize}
+
+Optional (bei ausreichendem Zeitbudget): Evaluation von Infrastructure-as-Code-Werkzeugen (z.\,B. Crossplane, Terraform) zur Bereitstellung von Cloud-Infrastruktur.
+
+\newpage
+
+\section{Methodik}
+Die Methodik gliedert sich in vier Phasen:
+
+\subsection*{1. Strategie-Definition}
+Es werden drei Deployment-Strategien umgesetzt:
+\begin{itemize}
+    \item \textbf{Manuell:} direkter Helm-/CLI-basierter Ablauf,
+    \item \textbf{Semi-automatisiert:} script-gesteuerte Orchestrierung über Bash und/oder Ansible,
+    \item \textbf{Automatisiert:} deklaratives Deployment über GitOps/CI/CD (z.\,B. ArgoCD oder Flux).
+\end{itemize}
+
+\subsection*{2. Szenarien-Design}
+Es werden drei Szenarien betrachtet:
+\begin{itemize}
+    \item \textbf{Szenario A (niedrige Komplexität):} Einzelinstanz von PURIS lokal bereitgestellt,
+    \item \textbf{Szenario B (mittlere Komplexität):} Multi-Instanz mit Abhängigkeiten wie IDP und Wallet und UMBRELLA??,
+    \item \textbf{Szenario C (hohe Komplexität):} automatisiertes Lifecycle-Management und Reconciliation (optionale IaC).
+\end{itemize}
+
+\subsection*{3. Metriken und Evaluationsrahmen}
+Die Evaluation nutzt fünf übergeordnete Metrik-Kategorien:
+\begin{description}
+    \item[Komplexität] Komponenten, Konfigurationsschritte, Abhängigkeiten
+    \item[Aufwand] Zeitbedarf, erforderliche Fähigkeiten, Dokumentationsbedarf
+    \item[Zuverlässigkeit] Fehlerquoten, Rollback-Fähigkeit, Sicherheitsaspekte
+    \item[Reproduzierbarkeit] Konsistenz, Determinismus, Konfigurationsdrift
+    \item[Operierbarkeit] Skalierung, Monitoring, Upgrades, Integration, Kosten
+\end{description}
+
+Die Datenerhebung umfasst Zeitmessungen, Fehlerprotokolle, Log-Analysen, Dokumentationsauswertung und qualitative Beobachtungen.
+
+\subsection*{4. Vergleichende Analyse}
+Die Resultate werden mittels
+\begin{itemize}
+    \item \textbf{quantitativer Evaluation} (Zeit, Fehler, Schritte, usw.)
+    \item \textbf{qualitativer Evaluation} (Wartbarkeit, Lernkurve, usw.)
+\end{itemize}
+analysiert. Die Erkenntnisse beantworten die Forschungsfragen und leiten Empfehlungen ab.
+
+\section{Erwartete Ergebnisse}
+Die Arbeit liefert:
+\begin{itemize}
+    \item eine strukturierte Taxonomie von Deployment-Strategien für Industrie~4.0,
+    \item ein wiederverwendbares, metrikenbasiertes Evaluationsmodell,
+    \item szenariobasierte Implementierungsergebnisse für PURIS,
+    \item praktische Handlungsempfehlungen für industrielle Einsatzszenarien.
+\end{itemize}
+
+\section{Einschränkungen}
+Zur Wahrung der Durchführbarkeit gilt:
+\begin{itemize}
+    \item es wird nur eine Fallstudie (PURIS?? oder Umbrella??) untersucht,
+    \item eine produktionsnahe industrielle Validierung liegt außerhalb des Umfangs,
+    \item die Sicherheitsbewertung beschränkt sich auf Deployment-Ebene,
+    \item die IaC-Evaluation ist optional.
+\end{itemize}
+
+\newpage
+
+\section{Gliederung der Arbeit}
+\begin{enumerate}[label=\arabic*.,ref=\arabic*]
+    \item \textbf{Einleitung}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Motivation
+        \item Problemstellung
+        \item Forschungsfragen
+        \item Aufbau der Arbeit und Vorgehensweise
+    \end{enumerate}
+
+    \item \textbf{Theoretischer Hintergrund}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Industrie 4.0
+        \item Cloud-native Systeme und Kubernetes
+        \item Deployment-Strategien und -Methoden: manuell, semi-automatisiert, automatisiert und (IaC optional)
+        \item Metriken für die Evaluation
+    \end{enumerate}
+
+    \item \textbf{Fallstudie: PURIS/UMBRELLA (Tractus-X)}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Überblick über das System und seine Komponenten
+        \item Anforderungen und Herausforderungen beim Deployment
+    \end{enumerate}
+
+    \item \textbf{Methodik}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Beschreibung der Methoden für manuelles, semi-automatisiertes und automatisiertes Deployment
+        \item Definition der Evaluationsmetriken
+        \item Szenarien für die Deployment-Implementierung
+    \end{enumerate}
+
+    \item \textbf{Deployments und Szenarien}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Manuelles Deployment
+        \item Semi-automatisiertes Deployment
+        \item Automatisiertes Deployment
+        \item Vergleich von IaC-Tools (optional)
+    \end{enumerate}
+
+    \item \textbf{Evaluation und Analyse}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Darstellung der Ergebnisse basierend auf den Metriken
+        \item Vergleich der Deployment-Strategien
+        \begin{enumerate}[label=\arabic{enumi}.\arabic{enumii}.\arabic*.,ref=\arabic{enumi}.\arabic{enumii}.\arabic*]
+            \item Qualitative Analyse
+            \item Quantitative Analyse
+        \end{enumerate}
+        \item Diskussion der Vor- und Nachteile jeder Strategie
+        \item Diskussion der Ergebnisse
+        \begin{enumerate}[label=\arabic{enumi}.\arabic{enumii}.\arabic*.,ref=\arabic{enumi}.\arabic{enumii}.\arabic*]
+            \item Beantwortung der Forschungsfragen
+        \end{enumerate}
+    \end{enumerate}
+
+    \item \textbf{Fazit und Empfehlungen}
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
+        \item Zusammenfassung der wichtigsten Erkenntnisse
+        \item Empfehlungen für Anwender in Industrieumgebungen
+    \end{enumerate}
+\end{enumerate}
+
+\section{Vorläufiger Zeitplan}
+\begin{tabular}{l l}
+Literaturrecherche & 2–3 Wochen\\
+Definition von Szenarien und Metriken & 1–2 Wochen\\
+Implementierung der Deployments & 4–6 Wochen\\
+Evaluation und Analyse & 2–3 Wochen\\
+Abschlussbericht und Revisionen & 3–4 Wochen\\
+\end{tabular}
+
+\section{Vorläufige Literatur}
+??
+
+\end{document}
