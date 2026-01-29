@@ -9,6 +9,23 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
+\usepackage[
+  backend=biber,
+  style=ieee,            % IEEE bibliography formatting
+  citestyle=numeric-comp,% [1–3] compression
+  sorting=none,          % order of appearance
+  maxbibnames=99,        % show all authors in bibliography (or set 6/10)
+  minbibnames=1,
+  giveninits=true,
+  doi=true,              % in CS/IEEE DOIs are useful
+  isbn=false,
+  url=true,
+  urldate=comp,          % print access date for online sources
+  date=year              % keep dates short when possible
+]{biblatex}
+
+\addbibresource{../references.bib}
+
 \begin{document}
 \setlength{\parskip}{0.8em}
 \setlength{\parindent}{0pt}
@@ -198,6 +215,7 @@ Abschlussbericht und Revisionen & 3–4 Wochen\\
 \end{tabular}
 
 \section{Vorläufige Literatur}
-??
+\nocite{*}
+\printbibliography[heading=none]
 
 \end{document}
