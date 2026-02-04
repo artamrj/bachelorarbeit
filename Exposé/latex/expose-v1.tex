@@ -25,7 +25,7 @@
   date=year              % keep dates short when possible
 ]{biblatex}
 
-\addbibresource{../references.bib}
+\addbibresource{./references.bib}
 
 \begin{document}
 \setlength{\parskip}{0.8em}
@@ -33,16 +33,35 @@
 
 \begin{titlepage}
     \centering
-    \vspace*{1cm}
-    {\large\textsc{Exposé für Bachelorarbeit}}\\[3cm]
-    {\LARGE\textbf{Deployment-Strategien für Cloud-native Industry~4.0 Anwendungen}}\\[1cm]
-    {\textbf{Eine Evaluierung basierend auf PURIS?? oder UMBRELLA?? (Tractus-X)}}\\[3cm]
-    {\large Student: \textit{Mohahammadreza Javadikouchaksaraei}\\
-    Betreuer: \textit{Haydar Qarawlus}\\
-    Studiengang: \textit{Bachelor Informatik}\\[1cm]
+    
+    % University Header
+    {\Large\textsc{Technische Universität Dortmund}}\\[0.3cm]
+    {\large Fakultät für Informatik}\\[0.2cm]
+    {\large Studiengang Bachelor Informatik}\\[2cm]
+    
+    % Document Type
+    {\Large\textsc{Exposé zur Bachelorarbeit}}\\[1.5cm]
+    
+    % Title
+    {\LARGE\bfseries Evaluierung von Deployment-Strategien\\[0.3cm] 
+    für Industrie~4.0 Anwendungen}\\[0.5cm]
+    {\large im Fallstudienkontext des PURIS (Tractus-X) Ökosystems}\\[2cm]
+    
+    % Information Table
+    \begin{tabular}{@{}ll@{}}
+        \textbf{Vorgelegt von:} & Mohahammadreza Javadikouchaksaraei \\[3.3em]
+        
+        \textbf{Erstprüfer:} & Prof. Dr. Falk Howar \\[0.3em]
+        \textbf{Zweitprüfer:} & Dr.-Ing. Joachim Hunker \\[0.3em]
+        \textbf{Fachlicher Betreuer:} & Haydar Qarawlus, M.Sc. \\
+    \end{tabular}
+    
     \vfill
-    \today}\\[2cm]
-    {\small Exposé für die Bachelorarbeit an der TU Dortmund in Kooperation mit dem Fraunhofer-Institut.}
+    
+    % Submission Date
+    {\large Eingereicht am: \today}\\[0.5cm]
+    {\small Dortmund}
+    
     \thispagestyle{empty}
 \end{titlepage}
 
@@ -58,31 +77,35 @@ Die Deployment solcher Systeme ist aufgrund ihres verteilten, containerisierten 
 Zur Analyse und zum Vergleich solcher Prozesse und Strategien bieten sich Projekte wie Catena-X an, insbesondere Tractus-X sowie die darin enthaltene PURIS-Komponente. Diese fortgeschrittene Anwendung ermöglicht eine Betrachtung aus akademischer und operativer Perspektive.
 
 \section{Problemstellung}
-Das Problem besteht nicht im Fehlen von Werkzeugen, sondern in der Frage, welches Werkzeug in welcher Situation angemessen eingesetzt werden sollte. Es mangelt an einer systematischen Analyse und Bewertung von Deployment-Strategien für komplexe Cloud-native Anwendungen und verteilte Mikrosysteme. Vorhandene Dokumentationen konzentrieren sich überwiegend auf technische Umsetzungsschritte und bieten keinen strukturierten Ansatz zur Auswahl zwischen manuellen, teilautomatisierten oder vollautomatischen Deployments. Darüber hinaus existiert kein kennzahlenbasiertes Rahmenwerk zur Bewertung dieser Strategien hinsichtlich Komplexität, Aufwand, Zuverlässigkeit, Reproduzierbarkeit und operativer Eigenschaften.
+Das Problem besteht nicht im Fehlen von Werkzeugen, sondern in der Frage, welches Werkzeug in welcher Situation angemessen eingesetzt werden sollte. Es mangelt an einer systematischen Analyse und Bewertung von Deployment-Strategien für komplexe containerisierte Anwendungen und verteilte Mikrosysteme. Vorhandene Dokumentationen konzentrieren sich überwiegend auf technische Umsetzungsschritte und bieten keinen strukturierten Ansatz zur Auswahl zwischen manuellen, teilautomatisierten oder vollautomatischen Deployments. Darüber hinaus existiert kein kennzahlenbasiertes Rahmenwerk zur Bewertung dieser Strategien hinsichtlich Komplexität, Aufwand, Zuverlässigkeit, Reproduzierbarkeit und operativer Eigenschaften.
 
 Folglich sehen sich Organisationen und Teams mit hochentwickelten Anwendungen und komplexen Systemarchitekturen mit Unsicherheiten hinsichtlich benötigter Kompetenzprofile, operativer Risiken und der langfristigen Wartbarkeit konfrontiert. Die zentrale Fragestellung liegt darin, wie ein geeigneter Weg gewählt werden kann, was wiederum Raum für vertiefte Forschung und Analyse eröffnet.
 
 \section{Forschungsfragen}
-Die Arbeit untersucht die folgenden Forschungsfragen:
 
 \begin{enumerate}[label=\textbf{RQ\arabic*:}]
-    \item Welche Metriken lassen sich zur Evaluation und zum Vergleich dieser Deployment-Strategien heranziehen?
-    \item Worin unterscheiden sich manuelle, semi-automatisierte und automatisierte Deployments hinsichtlich Komplexität, Aufwand, Zuverlässigkeit, Reproduzierbarkeit und Betriebseigenschaften?
-    \item Welche Deployment-Strategie sich auf Grundlage definierter Metriken und Szenarien für welches Anwendungsszenario eignet und warum?
-    \item Welche Deployment-Strategien sind für cloud-native Industry~4.0-Anwendungen im Kontext von Tractus-X (am Beispiel von PURIS) relevant?
+    \item Welche Deployment-Strategien sind für containerisierte Industry~4.0-Anwendungen im Kontext von Tractus-X relevant?
+    \item Anhand welcher Kriterien lassen sich Deployment-Strategien systematisch evaluieren und vergleichen?
+    \item Inwiefern unterscheiden sich manuelle, semi-automatisierte und automatisierte Deployment-Ansätze hinsichtlich der definierten Evaluationskriterien?
+    \item Welche Deployment-Strategie eignet sich unter welchen Rahmenbedingungen und aus welchen Gründen?
 \end{enumerate}
 
-\section{Ziele}
-Ziel dieser Arbeit ist es:
-\begin{itemize}
-    \item einen Satz von Evaluationsmetriken für Deployment-Strategien zu definieren,
-    \item drei Deployment-Strategien für PURIS umzusetzen (manuell, semi-automatisiert, automatisiert),
-    \item Evaluation-Szenarien zu entwerfen und Daten zu erheben,
-    \item Deployment-Strategien quantitativ und qualitativ zu vergleichen,
-    \item Handlungsempfehlungen für industrielle Anwender abzuleiten.
-\end{itemize}
+\section{Zielsetzung}
+Die vorliegende Arbeit verfolgt folgende Zielsetzungen:
 
-Optional (bei ausreichendem Zeitbudget): Evaluation von Infrastructure-as-Code-Werkzeugen (z.\,B. Crossplane, Terraform) zur Bereitstellung von Cloud-Infrastruktur.
+\begin{enumerate}
+    \item \textbf{Entwicklung eines Evaluationsrahmens:} Erarbeitung eines strukturierten Kriterienkatalogs zur systematischen Bewertung von Deployment-Strategien im Kontext containerisierter Anwendungen.
+    
+    \item \textbf{Prototypische Implementierung:} Umsetzung dreier Deployment-Strategien (manuell, semi-automatisiert, vollautomatisiert) am Beispiel der PURIS-Anwendung innerhalb des Tractus-X-Ökosystems.
+    
+    \item \textbf{Empirische Evaluation:} Konzeption und Durchführung von Evaluationsszenarien zur Erhebung quantitativer und qualitativer Daten.
+    
+    \item \textbf{Vergleichende Analyse:} Gegenüberstellung der Deployment-Strategien hinsichtlich der definierten Evaluationskriterien.
+    
+    \item \textbf{Ableitung von Handlungsempfehlungen:} Formulierung praxisorientierter Empfehlungen für die Strategieauswahl in industriellen Anwendungsszenarien.
+\end{enumerate}
+
+
 
 \newpage
 
@@ -98,11 +121,11 @@ Es werden drei Deployment-Strategien umgesetzt:
 \end{itemize}
 
 \subsection*{2. Szenarien-Design}
-Es werden drei Szenarien betrachtet:
+Es werden drei Szenarien mit steigender Integrationstiefe betrachtet:
 \begin{itemize}
-    \item \textbf{Szenario A (niedrige Komplexität):} Einzelinstanz von PURIS lokal bereitgestellt,
-    \item \textbf{Szenario B (mittlere Komplexität):} Multi-Instanz mit Abhängigkeiten wie IDP und Wallet und UMBRELLA??,
-    \item \textbf{Szenario C (hohe Komplexität):} automatisiertes Lifecycle-Management und Reconciliation (optionale IaC).
+    \item \textbf{Szenario A (geringe Integrationstiefe):} Einzelinstanz von PURIS in lokaler Umgebung,
+    \item \textbf{Szenario B (moderate Integrationstiefe):} Multi-Instanz-Deployment mit externen Abhängigkeiten (IDP, Wallet, Tractus-X Umbrella),
+    \item \textbf{Szenario C (hohe Integrationstiefe):} vollständiges Lifecycle-Management mit automatisierter Reconciliation (optional IaC-Integration).
 \end{itemize}
 
 \subsection*{3. Metriken und Evaluationsrahmen}
@@ -158,7 +181,7 @@ Zur Wahrung der Durchführbarkeit gilt:
     \item \textbf{Theoretischer Hintergrund}
     \begin{enumerate}[label=\arabic{enumi}.\arabic*.,ref=\arabic{enumi}.\arabic*]
         \item Industrie 4.0
-        \item Cloud-native Systeme und Kubernetes
+        \item Containerisierte Systeme und Kubernetes
         \item Deployment-Strategien und -Methoden: manuell, semi-automatisiert, automatisiert und (IaC optional)
         \item Metriken für die Evaluation
     \end{enumerate}
